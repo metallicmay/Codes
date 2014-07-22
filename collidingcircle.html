@@ -1,0 +1,32 @@
+<html>
+<body>
+<canvas id="mycanvas" width="600" height="500" style="border:1px solid #000000;">
+</canvas>
+<script>
+window.onload=function(){
+var c =document.getElementById("mycanvas");
+var context=c.getContext("2d");
+var x1=0,y1=0,w1=600,h1=500;
+var x2=400,y2=300,r=50,vx=5,vy=5;
+function draw() {
+context.fillStyle="#000000";
+context.fillRect(x1,y1,w1,h1);
+context.fillStyle="#FF0000";
+context.beginPath();
+context.arc(x2,y2,r,0,2*Math.PI,false);
+context.fill();
+if(((x2+vx+r)>(x1+w1))||((x2-r+vx)<x1)) { //to maintain the circle within the boundaries
+vx=-vx;
+ }
+ if(((y2+vy+r)>(y1+h1))||((y2-r+vy)<y1)) {
+vy=-vy;
+ }
+x2+=vx;
+y2+=vy;
+ window.requestAnimationFrame(draw);
+ };
+draw();
+}
+</script>
+</body>
+</html>
